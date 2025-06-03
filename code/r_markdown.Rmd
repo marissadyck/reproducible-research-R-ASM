@@ -9,22 +9,209 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+> Script last updated: ENTER DATE by ENTER NAME
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Before you begin
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Notes
 
-```{r cars}
-summary(cars)
+A few notes about this script.
+
+This is a mock script that walks through the steps of analyzing mammal data using generalized linear models. It uses slightly modified data from a real study on brown bear livestock predation in Romania that was published in Conservation Science and Practice.    
+
+[Mihai I. Pop, Marissa A. Dyck, Silviu Chiriac, Berde Lajos, Szilárd Szabó, Cristian I. Iojă, Viorel D. Popescu. (2023). Predictors of brown bear predation events on livestock in the Romanian Carpathians](https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/csp2.12884)  
+
+This code is derived from course materials developed by Dr. Marissa A. Dyck for undergraduate & graduate coursework at the University of Victoria, as well as international R workshops. The course is free and available online through [Dr. Dyck's GitHub](https://marissadyck.github.io/R-crash-course.github.io/). You may find this a helpful resource for further developing your coding knowledge and skills beyond what we can cover in this workshop.  
+
+If you have question please email the author,   
+
+Marissa A. Dyck   
+Postdoctoral research fellow    
+University of Victoria    
+School of Environmental Studies     
+Email: [marissadyck17@gmail.com](marissadyck17@gmail.com)    
+
+
+## R and RStudio
+
+Before starting you should ensure you have the latest version of R and RStudio downloaded. This code was generated under R version 4.2.3 and with RStudio version 2024.04.2+764.    
+
+You can download R and RStudio [HERE](https://posit.co/download/rstudio-desktop/)   
+
+
+## R markdown
+
+This script is written in R markdown and thus uses a mix of coding markup languages and R. If you are planning to run this script with new data or make any modifications you will want to be familiar with some basics of R markdown.
+
+Below is an R markdown cheatsheet to help you get started,    
+[R markdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)    
+
+
+## Install packages
+
+If you don't already have the following packages installed, use the code below to install them. *NOTE this will not run automatically as eval=FALSE is included in the chunk setup (i.e. I don't want it to run every time I run this code since I have the packages installed)
+
+```{r install packages, eval=FALSE}
+
+install.packages('tidyverse') 
+install.packages('MuMIn')
+install.packages('car')
+install.packages('lme4')
+install.packages('PerformanceAnalytics')
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+## Load libraries
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+Then load the packages to your library so they are available for use during this current R session. I have this chode chunk set to message=FALSE so that my knitted doc doesn't print all the info about each library that is normally printed in the console.
+
+```{r libraries, message=FALSE}
+
+library(tidyverse) # for data formatting, cleaning, and much more!
+library(PerformanceAnalytics) # for generating correlation matrix plots 
+library(lme4) # for fitting glms
+library(car) # companion package for glm analysis with additional functions
+library(MuMIn) # for model selection
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+# Data
+
+
+## README
+
+As previously mentioned, this data is a slightly modified version of data associated with [Pop et al., 2023](https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/csp2.12884). There is a published GitHub repository on Dr. Dyck's GitHub with the final data and analysis scripts from the publication if you are interested. 
+
+[Brown Bear Predation GitHub repository](https://github.com/marissadyck/Brown_bear_predation_RO)  
+
+Although the data is slightly different, the README that was published with the final analysis should serve as a good enough reference for the data we are using if you want more information about the data collected.  
+
+[Brown Bear README](data/bear_README.html)  
+
+
+## Import data
+
+This code will read in the data as a tibble and save it to the environment with a descriptive and tidy name - this is essential for well organized reproducible research to avoid errors with coding. Avoid naming your data files as 'data' or 'dat' for example, because as your workflow gets more complex you may be importing several datasets for a single project or you may be working on several projects at a time in one R session - if all your data are named very similarly or the exact same thing you can easily reference the wrong data set.
+
+In the same code chunk we will also do a bit of data tidying that I consider the standard now for all of my analyses to ease coding, reduce errors, and increase reproduce-ability. 
+
+* First, we will set all the column names to lowercase - this reduces keystrokes and possible case sensitive errors while coding  
+
+* Then we will specify how each of the variables should be read in (e.g. factor, numeric, etc.). This will also reduce potential errors later in the process as R often misinterprets how to read in data. You should always be familiar enough with your data before beginning any analysis to complete this section (i.e. you should know what each column is, how it was measured, and ideally what format you need it to be in for your analysis - some variables can be coded in several ways which are all correct depending on what you are doing with the data). **This is wear README files come in: You have to familiarize yourself with the data before beginning any analysis, and to have truly reproducible research when you publish or share your analysis you will need to have a thorough explanation of your data for someone else. This is all included in a README file and I recommend starting one at this phase in your process if not sooner!**
+
+* Lastly, we will check the structure of the data and make sure things read in properly, and make any changes to this code if necessary   
+
+
+
+```{r import data}
+
+# read in the bear data and do some data tidying
+bear_damage <- read_csv('data/raw/pagube_2008_2016_spatial.csv',
+                        
+                        # specify how the columns are read in
+                        col_types = cols(Damage = col_factor(),
+                                         Year = col_factor(),
+                                         Month = col_factor(),
+                                         Targetspp = col_factor(),
+                                         Landcover_code = col_factor(),
+                                         .default = col_number())) %>% 
+  
+  # set all column names to lowercase
+  rename_with(tolower)
+
+# check the internal structure of the data 
+str(bear_damage)
+
+```
+
+
+## Data checks and cleaning
+
+Now we will do some mock data checks and data cleaning. This doesn't necessarily reflect what you would need to do with this exact data but provides some examples of things to check and gives you practice with different code. 
+
+### Years
+
+First we will check that the data represents all the years for the study and no years are missing and there isn't data from any years outside the study timeframe. 
+
+From the README file we know that we should have data for years 2008-2016
+
+```{r check years}
+
+# check that year is correct
+summary(bear_damage$year)
+
+```
+
+*You'll notice it isn't ordered because we read it in as a factor not a numeric variable there are ways to fix this but I will leave that to you to explore*
+
+### Months
+
+We will also check that all the for months looks correct and is entered properly. We should have 1-12 with 1 being January and 12 December, we will also have zeros from the pseudoabsence data generated for this dataset (see README)
+
+```{r check month}
+ # check that month is correct 
+summary(bear_damage$month)
+```
+>You'll notice after checking that there aren't any 1's, that is because brown bears are hibernating during this period and thus there were no records of damage for January. These are important details to know, check, and make note of in your code and README for reproducible science!
+
+
+## Filter data
+
+Much of the spatial data for this dataset are represented as proportion (e.g., proportion of different types of habitat on the landscape). If we expect that our proportional data should all sum to 100 we can check that for each site and remove any sites (rows) that don't as a data cleaning step. The code below will do this. 
+
+We also may be interested in filtering out observations where a lot of animals were involved (likely these are smaller livestock such as chickens etc.), if we only want to use data where a certain number of livestock were killed we can do that data cleaning step here as well.
+
+We will assign a new data set to the environment for this step so we can compare with the old data
+```{r prop check}
+
+# create new data with prop_check column and filter out observations that don't sum to 100
+bear_damage_tidy <- bear_damage %>% 
+  
+  # create a column that sums across rows of spatial data
+  mutate(prop_check = rowSums(across(contains('prop')))) %>% 
+  
+  # filter to 100 and only livestock events with 10 or fewer animals
+  filter(prop_check == 100 &
+           livestock_killed <= 10) 
+
+# check new data
+summary(bear_damage_tidy)
+
+```
+
+## Remove old data
+
+Now, if we aren't going to use the old version of the data any further, we should remove it from our environment. Keeping our environment clean helps ensure we don't accidentally use the wrong data and also makes it organized and easier to inspect objects if we need. 
+
+```{r rm old data}
+
+# remove old data
+rm(bear_damage)
+```
+
+
+# Summary statistics
+
+Often times for publications, reports, or other deliverables we need to provide some summary information about the raw data we collected. Besides that, this is a great way to begin to explore your data prior to conducting any formal analyses.
+
+## Total events
+
+First we will calculate the total number of predation *events*, for this dataset that is anything in the damage that is coded as a 1 where zeros represent pseudoabsence events. We will also calculate the total number of livestock killed across all events.
+
+Remebmer we are using the 'tidy' dataset which doesn't include all of the raw data. Depending on your needs you may want to use the messier raw data to report your summary stats
+```{r}
+# total number of events & total number of livestock killed
+
+# with summary we can look at the number of events (1s in the damage column)
+summary(bear_damage_tidy$damage)
+
+# or with summarise we can calculate both 
+bear_damage_tidy %>% 
+  
+  # ensure to only count events of damage
+  filter(damage == '1') %>% 
+  
+  summarise(n_events = n(),
+            total_killed = sum(livestock_killed))
+```
+
