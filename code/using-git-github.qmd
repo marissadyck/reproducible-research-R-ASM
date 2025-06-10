@@ -1,0 +1,53 @@
+---
+title: "using-git-github"
+format: html
+editor: visual
+---
+
+## Using Git and Github in your Reproducible Workflow
+
+### Outline
+
+1.  Why do we need version control?
+
+2.  What is git? What is github? How are they related?
+
+3.  Gitting started with github
+
+4.  Recommended workflow: start on github -\> then create rstudio project
+
+5.  Let's try it - using git and github commands in the terminal
+
+### 1. Why do we need version control?
+
+Does this seem familiar?
+
+### ![](images/file_naming_hell.jpg){width="391"}
+
+### 2. What is git? What is github? How are they related?
+
+#### What is git?
+
+Git is a *free*, *open source*, *distributed* version control software system. You install git on your computer and use it to track changes you make to files. Git does not make copies of each version of a file, which would take up space quickly, but rather keeps track of the changes you make to tracked files between *commits* (recording changes you have made).
+
+#### What is github?
+
+Github is a (mostly) free remote, cloud based repository for your work. You can use it to back up your work, share your work, recover older versions of your work, and much more.
+
+#### How are git and github related?
+
+Git tracks changes on your local computer, whereas github stores all of those changes to your files remotely.
+
+![](images/git_v_github.png){width="1000"}
+
+You move your files and your changes between your local repository and your remote repository (hosted on github) via `push` and `pull` commands.
+
+### 3. Gitting started with github
+
+### 4. Recommended workflow: start on github -\> then create rstudio project
+
+### 5. Let's try it - using git and github commands in the terminal
+
+#### Basic git commands
+
+You use git from the terminal on your computer. You can access the terminal right in RStudio, but you don't have to.

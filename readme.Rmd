@@ -1,0 +1,12 @@
+---
+title: "readme"
+output: html_document
+---
+
+## readme
+
+This is the repository for the Reproducible Research using R workshop at the 2025 meeting of the American Society of Mammalogists, held at Purdue University from June 27 - July 1, 2025.
+
+The workshop and its materials have been organized and presented by Marissa Dyck and Erika Barthelmess.
+
+We hope you find these materials helpful in your quest toward a reproducible research workflow!
