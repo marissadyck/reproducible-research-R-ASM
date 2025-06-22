@@ -693,7 +693,7 @@ conducting any formal analyses.</p>
 that is coded as a one where zeros represent pseudoabsence events. We
 will also calculate the total number of livestock killed across all
 events.</p>
-<p>Remebmer we are using the ‘tidy’ dataset which doesn’t include all of
+<p>Remember we are using the ‘tidy’ dataset which doesn’t include all of
 the raw data. Depending on your needs you may want to use the messier
 raw data to report your summary stats</p>
 <pre class="r"><code># total number of events &amp; total number of livestock killed
@@ -1418,8 +1418,13 @@ summary(bear_damage_tidy$prop_forest)</code></pre>
 hypotheses about what variables may explain our chosen response and fit
 these to a glm with the appropriate distribution. As this is a mock
 analysis and not a course on human-wildlife conflict with bears in
-eastern europe we won’t spend a ton of time justifying these models we
+eastern Europe we won’t spend a ton of time justifying these models we
 will just use a few as examples.</p>
+<blockquote>
+<p>Note these are fit to a simple binomial distribution not a negative
+binomial distribution which is what we determined earlier would truly be
+the best-fit distribution</p>
+</blockquote>
 <pre class="r"><code># going to scale data first for ease of coding
 bear_damage_tidy &lt;- bear_damage_tidy %&gt;% 
   
@@ -1592,7 +1597,7 @@ plot(bear_distance_i) # ignore first three</code></pre>
 <p>There are several ways to plot results, for the purposes of this mock
 walk through we will plot odds ratios for the explanatory variables in
 our best-fit model. An odds ratio plot is a great way to show magnitude,
-confidence, and effect sizes for all your explanaotry variables in one
+confidence, and effect sizes for all your explanatory variables in one
 figure.</p>
 <p>First we need to extract the odds ratios in a tidy format</p>
 <pre class="r"><code># create a new data frame with the odds ratios

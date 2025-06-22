@@ -4,8 +4,8 @@ author: "Marissa Dyck"
 date: "2025-05-16"
 output:
   word_document: default
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -203,7 +203,7 @@ Often times for publications, reports, or other deliverables we need to provide 
 
 First we will calculate the total number of predation *events*, for this dataset, that is anything in the damage column that is coded as a one where zeros represent pseudoabsence events. We will also calculate the total number of livestock killed across all events.
 
-Remebmer we are using the 'tidy' dataset which doesn't include all of the raw data. Depending on your needs you may want to use the messier raw data to report your summary stats
+Remember we are using the 'tidy' dataset which doesn't include all of the raw data. Depending on your needs you may want to use the messier raw data to report your summary stats
 ```{r}
 # total number of events & total number of livestock killed
 
@@ -398,7 +398,9 @@ summary(bear_damage_tidy$prop_forest)
 
 ## Fit GLMs
 
-Here we will create a candidate set of models that represent hypotheses about what variables may explain our chosen response and fit these to a glm with the appropriate distribution. As this is a mock analysis and not a course on human-wildlife conflict with bears in eastern europe we won't spend a ton of time justifying these models we will just use a few as examples.
+Here we will create a candidate set of models that represent hypotheses about what variables may explain our chosen response and fit these to a glm with the appropriate distribution. As this is a mock analysis and not a course on human-wildlife conflict with bears in eastern Europe we won't spend a ton of time justifying these models we will just use a few as examples.
+
+> Note these are fit to a simple binomial distribution not a negative binomial distribution which is what we determined earlier would truly be the best-fit distribution
 
 ```{r fit models}
 
@@ -498,7 +500,7 @@ plot(bear_distance_i) # ignore first three
 
 # Plot Results
 
-There are several ways to plot results, for the purposes of this mock walk through we will plot odds ratios for the explanatory variables in our best-fit model. An odds ratio plot is a great way to show magnitude, confidence, and effect sizes for all your explanaotry variables in one figure. 
+There are several ways to plot results, for the purposes of this mock walk through we will plot odds ratios for the explanatory variables in our best-fit model. An odds ratio plot is a great way to show magnitude, confidence, and effect sizes for all your explanatory variables in one figure. 
 
 First we need to extract the odds ratios in a tidy format
 
