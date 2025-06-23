@@ -1,0 +1,11 @@
+---
+title: "using-git-github 2"
+format: html
+editor: visual
+---
+
+## Overview
+
+Now that you know a little bit about git and git hub, let's try it!
+
+You are going to clone an existing github repository that includes some data. We will add some code to tweak the data a bit, and then you will go through the steps of staging and comitting your changes and then pushing them to github.

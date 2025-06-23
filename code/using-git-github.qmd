@@ -1,10 +1,10 @@
 ---
-title: "using-git-github"
+title: "using-git-github 1"
 format: html
 editor: visual
 ---
 
-## Using Git and Github in your Reproducible Workflow
+## An overview of git and github
 
 ### Outline
 
@@ -32,7 +32,7 @@ Git is a *free*, *open source*, *distributed* version control software system. Y
 
 #### What is github?
 
-Github is a (mostly) free remote, cloud based repository for your work. You can use it to back up your work, share your work, recover older versions of your work, and much more.
+Github is a (mostly) free, cloud-based repository for your work. You can use it to back up your work, share your work, recover older versions of your work, and much more.
 
 #### How are git and github related?
 
@@ -44,10 +44,91 @@ You move your files and your changes between your local repository and your remo
 
 ### 3. Gitting started with github
 
-### 4. Recommended workflow: start on github -\> then create rstudio project
+Before you can use git and github with your RStudio workflow, you will need to make sure that:
 
-### 5. Let's try it - using git and github commands in the terminal
+1.   git is installed on your computer
+2.  You have created an account on github
+3.  You have checked that your RStudio can talk to your github account.
 
-#### Basic git commands
+I \*strongly recommend\* checking out this website: [Happy Git and GitHub for the useR](https://happygitwithr.com/) which will walk you through most of the required steps and which encourages use of the `usethis` package which also installs a number of other helper packages.
+
+### 4. Recommended workflow for creating a new project 
+
+If you want to use git & github for version control and tie them to your RStudio project, things generally work most smoothly if you work in this order.
+
+1.  Create a new repository on github and when asked, go ahead an initialize the repository with a README file.
+2.  Copy a clone of the repository from github
+3.  Create a new RStudio project, but choose "from version control" when setting up the project.
+
+### 5. Recommended workflow for cloning someone else's project
+
+Cloning someone else's project is almost the same thing as creating a new project in RStudio! The only difference is that the repository you will copy from github will not be yours - you will copy it the same way as you would your own repository. After you have copied the repository, the steps for adding it as your own project are the same as for creating a new project.
+
+### 6. Let's try it - using git and github commands in the terminal
+
+#### Using the terminal and basic bash commands
 
 You use git from the terminal on your computer. You can access the terminal right in RStudio, but you don't have to.
+
+Here's an overview of some basic terminal (bash) commands:
+
+| Command           | Function                                               |
+|-------------------|-----------------------------------------------------|
+| `pwd`             | prints working directory                               |
+| `cd` \[filepath\] | changes directory to specified path                    |
+| `cd ~`            | changes to home directory                              |
+| `cd /`            | changes to root directory                              |
+| `cd ..`           | move to parent directory                               |
+| `ls`              | list contents in a directory                           |
+| `ls -a`           | list all contents in directory, including hidden files |
+| `ls -l`           | view detailed list of directory contents               |
+| `rm -r`           | remove a directory and all of its contents             |
+| `mkdir`           | create a new directory                                 |
+
+: Some common terminal commands
+
+\
+
+#### Some basic git commands
+
+Here's an overview of some basic git commands:
+
+You need certain commands to configure git for your computer. Here's an overview:
+
+| Command | Function |
+|----|----|
+| `git config -global user.name "your name"` | Sets the name that will be attached to your work |
+| `git config -global user.email "you@example.edu"` | Sets the email address that will be attached to your work |
+| `git config  -global color.ui.auto` | Enables some colorization of your git output |
+| `git config credential.helper store` | For PC users, bypasses need to authenticate every time you pull/push/fetch etc. |
+
+: Commands to configure git
+
+\
+
+You will use other git commands for your day-to-day work. Here are some.
+
+| Command | Function |
+|----|----|
+| `git init` | Initializes tracking on the current directory |
+| `git init [project name]` | Creates a new local repository in a new directory called \[project name\] |
+| `git clone [project url]` | Downloads a project with the entire history from a remote repository |
+| `git status` | Tells status of working directory showing new, staged, ore modified files |
+| `git add [file]` | Adds file to the staging area |
+| `git add .` | Adds all the files in the directory to the staging area |
+| `git diff [file]` | Shows changes between working directory and staging area |
+| `git diff -staged [file]` | Shows any changes between the staging area and the repository |
+| `git commit -m "my commit message"` | Creates a new commit (like a snapshot) of the staging area; must have the -m with a message. |
+| `git rm [file]` | Removes a file from the staging area |
+| `git log [-n count]` | Lists commit history of current branch. `-n count` limits list to last **n** commits |
+| `git reset [--hard] [ target reference]` | Switches the current branch to the target reference, leaving a difference as an uncommitted change.  When `-hard` is used, all changes are discarded. |
+| `git revert [commit sha]` | ON A MAC, creates a new commit, reverting to changes from the specified commit |
+| `git revert [commit sha current] [commit sha to return to]` | ON A PC, creates a new commit, reverting changes from the specified commit |
+| `esc :q` or just `:q` (depending on conditions) | Escape from vim editor (e.g. if you forget -m on a commit) |
+| `:i` | ON A MAC, Insert mode on vim editor (to add a message) |
+| `:w` | ON A MAC, Saves message in vim editor |
+| `esc :wq` | How to respond to a revert comment in vim |
+
+: Some day-to-day git commands
+
+\
