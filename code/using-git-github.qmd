@@ -46,25 +46,23 @@ You move your files and your changes between your local repository and your remo
 
 Before you can use git and github with your RStudio workflow, you will need to make sure that:
 
-1.   git is installed on your computer
+1.  git is installed on your computer
 2.  You have created an account on github
 3.  You have checked that your RStudio can talk to your github account.
 
 I \*strongly recommend\* checking out this website: [Happy Git and GitHub for the useR](https://happygitwithr.com/) which will walk you through most of the required steps and which encourages use of the `usethis` package which also installs a number of other helper packages.
 
-### 4. Recommended workflow for creating a new project 
+### 4. Recommended workflow start on github -\> then create rstudio project
 
 If you want to use git & github for version control and tie them to your RStudio project, things generally work most smoothly if you work in this order.
 
-1.  Create a new repository on github and when asked, go ahead an initialize the repository with a README file.
-2.  Copy a clone of the repository from github
-3.  Create a new RStudio project, but choose "from version control" when setting up the project.
+Regardless of whether you are creating a new project or cloning someone else's project from github, the process is largely the same.
 
-### 5. Recommended workflow for cloning someone else's project
+1.  Make sure there is a repository on github. If it is someone else's, this step is easy. If you are creating a brand new RStudio project, then create a new repository on github and, when asked, go ahead an initialize the repository with a README file.
+2.  Copy a clone of the repository (yours or someone else's) from github
+3.  Create a new RStudio project, but choose "from version control" when setting up the project. You will be asked for a url, and this is where you paste the url you copied from github.
 
-Cloning someone else's project is almost the same thing as creating a new project in RStudio! The only difference is that the repository you will copy from github will not be yours - you will copy it the same way as you would your own repository. After you have copied the repository, the steps for adding it as your own project are the same as for creating a new project.
-
-### 6. Let's try it - using git and github commands in the terminal
+### 5. Let's try it - using git and github commands in the terminal
 
 #### Using the terminal and basic bash commands
 
@@ -73,7 +71,7 @@ You use git from the terminal on your computer. You can access the terminal righ
 Here's an overview of some basic terminal (bash) commands:
 
 | Command           | Function                                               |
-|-------------------|-----------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | `pwd`             | prints working directory                               |
 | `cd` \[filepath\] | changes directory to specified path                    |
 | `cd ~`            | changes to home directory                              |
@@ -96,7 +94,7 @@ Here's an overview of some basic git commands:
 You need certain commands to configure git for your computer. Here's an overview:
 
 | Command | Function |
-|----|----|
+|------------------------------------|------------------------------------|
 | `git config -global user.name "your name"` | Sets the name that will be attached to your work |
 | `git config -global user.email "you@example.edu"` | Sets the email address that will be attached to your work |
 | `git config  -global color.ui.auto` | Enables some colorization of your git output |
@@ -109,7 +107,7 @@ You need certain commands to configure git for your computer. Here's an overview
 You will use other git commands for your day-to-day work. Here are some.
 
 | Command | Function |
-|----|----|
+|------------------------------------|------------------------------------|
 | `git init` | Initializes tracking on the current directory |
 | `git init [project name]` | Creates a new local repository in a new directory called \[project name\] |
 | `git clone [project url]` | Downloads a project with the entire history from a remote repository |
@@ -121,7 +119,7 @@ You will use other git commands for your day-to-day work. Here are some.
 | `git commit -m "my commit message"` | Creates a new commit (like a snapshot) of the staging area; must have the -m with a message. |
 | `git rm [file]` | Removes a file from the staging area |
 | `git log [-n count]` | Lists commit history of current branch. `-n count` limits list to last **n** commits |
-| `git reset [--hard] [ target reference]` | Switches the current branch to the target reference, leaving a difference as an uncommitted change.  When `-hard` is used, all changes are discarded. |
+| `git reset [--hard] [ target reference]` | Switches the current branch to the target reference, leaving a difference as an uncommitted change. When `-hard` is used, all changes are discarded. |
 | `git revert [commit sha]` | ON A MAC, creates a new commit, reverting to changes from the specified commit |
 | `git revert [commit sha current] [commit sha to return to]` | ON A PC, creates a new commit, reverting changes from the specified commit |
 | `esc :q` or just `:q` (depending on conditions) | Escape from vim editor (e.g. if you forget -m on a commit) |
