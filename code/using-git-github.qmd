@@ -16,7 +16,7 @@ editor: visual
 
 4.  Recommended workflow: start on github -\> then create rstudio project
 
-5.  Let's try it - using git and github commands in the terminal
+5.  An overview of some git commands
 
 ### 1. Why do we need version control?
 
@@ -71,7 +71,7 @@ You use git from the terminal on your computer. You can access the terminal righ
 Here's an overview of some basic terminal (bash) commands:
 
 | Command           | Function                                               |
-|--------------------|----------------------------------------------------|
+|----------------------|--------------------------------------------------|
 | `pwd`             | prints working directory                               |
 | `cd` \[filepath\] | changes directory to specified path                    |
 | `cd ~`            | changes to home directory                              |
@@ -128,5 +128,7 @@ You will use other git commands for your day-to-day work. Here are some.
 | `esc :wq` | How to respond to a revert comment in vim |
 
 : Some day-to-day git commands
+
+Now that you know a bit about git and github, let's give it a try!
 
 \
