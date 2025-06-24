@@ -22,7 +22,15 @@ editor: visual
 
 Does this seem familiar?
 
-### ![](images/file_naming_hell.jpg){width="391"}
+![Do your files look like this?](images/file_naming_hell.jpg){fig-alt="Cartoon showing directory with poorly named and organized files." fig-align="center"}
+
+Here's (one of) my embarrassing real example:
+
+![](images/file_pane_mess.png)
+
+You can see from the above picture that we were using git (note the .git and .gitignore files), but I didn't really have a good grasp of version control at that time in my life.
+
+## We can do better by using version control!
 
 ### 2. What is git? What is github? How are they related?
 
@@ -38,21 +46,22 @@ Github is a (mostly) free, cloud-based repository for your work. You can use it 
 
 Git tracks changes on your local computer, whereas github stores all of those changes to your files remotely.
 
-![](images/git_v_github.png){width="1000"}
+![Comparison between git and github](images/git_v_github.png)
 
+\
 You move your files and your changes between your local repository and your remote repository (hosted on github) via `push` and `pull` commands.
 
 ### 3. Gitting started with github
 
 Before you can use git and github with your RStudio workflow, you will need to make sure that:
 
-1.  git is installed on your computer
+1.  git is installed on your computer (git for windows is a good choice for pc users)
 2.  You have created an account on github
 3.  You have checked that your RStudio can talk to your github account.
 
-I \*strongly recommend\* checking out this website: [Happy Git and GitHub for the useR](https://happygitwithr.com/) which will walk you through most of the required steps and which encourages use of the `usethis` package which also installs a number of other helper packages.
+I **strongly recommend** checking out this website: [Happy Git and GitHub for the useR](https://happygitwithr.com/) which will walk you through most of the required steps and which encourages use of the `usethis` package which also installs a number of other helper packages.
 
-### 4. Recommended workflow start on github -\> then create rstudio project
+### 4. Recommended workflow: start on github -\> then create rstudio project
 
 If you want to use git & github for version control and tie them to your RStudio project, things generally work most smoothly if you work in this order.
 
@@ -66,12 +75,14 @@ Regardless of whether you are creating a new project or cloning someone else's p
 
 #### Using the terminal and basic bash commands
 
-You use git from the terminal on your computer. You can access the terminal right in RStudio, but you don't have to.
+You use git from the terminal on your computer. You can access the terminal right in RStudio, but you don't have to. Some people find the terminal intimidating at first; you may wish to use a git desktop client that works as a graphical user interface as you get started. Here is a link to the git desktop client that comes free from github.
+
+Below I provide a guide to some terminal and git commands. You can get more details from the cheat sheet found in the docs folder for this project.
 
 Here's an overview of some basic terminal (bash) commands:
 
 | Command           | Function                                               |
-|----------------------|--------------------------------------------------|
+|----------------------------------|--------------------------------------|
 | `pwd`             | prints working directory                               |
 | `cd` \[filepath\] | changes directory to specified path                    |
 | `cd ~`            | changes to home directory                              |
@@ -85,8 +96,6 @@ Here's an overview of some basic terminal (bash) commands:
 
 : Some common terminal commands
 
-\
-
 #### Some basic git commands
 
 Here's an overview of some basic git commands:
@@ -98,16 +107,14 @@ You need certain commands to configure git for your computer. Here's an overview
 | `git config -global user.name "your name"` | Sets the name that will be attached to your work |
 | `git config -global user.email "you@example.edu"` | Sets the email address that will be attached to your work |
 | `git config  -global color.ui.auto` | Enables some colorization of your git output |
-| `git config credential.helper store` | For PC users, bypasses need to authenticate every time you pull/push/fetch etc. |
+| `git config credential.helper manager` | For PC users, bypasses need to authenticate every time you pull/push/fetch etc. |
 
 : Commands to configure git
-
-\
 
 You will use other git commands for your day-to-day work. Here are some.
 
 | Command | Function |
-|------------------------------------|------------------------------------|
+|--------------------------|----------------------------------------------|
 | `git init` | Initializes tracking on the current directory |
 | `git init [project name]` | Creates a new local repository in a new directory called \[project name\] |
 | `git clone [project url]` | Downloads a project with the entire history from a remote repository |
@@ -130,5 +137,3 @@ You will use other git commands for your day-to-day work. Here are some.
 : Some day-to-day git commands
 
 Now that you know a bit about git and github, let's give it a try!
-
-\

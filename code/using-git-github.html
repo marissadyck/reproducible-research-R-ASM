@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
+<meta name="generator" content="quarto-1.6.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>using-git-github</title>
+<title>using-git-github 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,10 +29,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="using-git-github_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="using-git-github_files/libs/quarto-html/anchor.min.js"></script>
 <link href="using-git-github_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="using-git-github_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="using-git-github_files/libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="using-git-github_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="using-git-github_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="using-git-github_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="using-git-github_files/libs/bootstrap/bootstrap-fe6593aca1dacbc749dc3d2ba78c8639.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">using-git-github</h1>
+<h1 class="title">using-git-github 1</h1>
 </div>
 
 
@@ -62,8 +62,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="using-git-and-github-in-your-reproducible-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="using-git-and-github-in-your-reproducible-workflow">Using Git and Github in your Reproducible Workflow</h2>
+<section id="an-overview-of-git-and-github" class="level2">
+<h2 class="anchored" data-anchor-id="an-overview-of-git-and-github">An overview of git and github</h2>
 <section id="outline" class="level3">
 <h3 class="anchored" data-anchor-id="outline">Outline</h3>
 <ol type="1">
@@ -71,16 +71,25 @@ ul.task-list li input[type="checkbox"] {
 <li><p>What is git? What is github? How are they related?</p></li>
 <li><p>Gitting started with github</p></li>
 <li><p>Recommended workflow: start on github -&gt; then create rstudio project</p></li>
-<li><p>Let’s try it - using git and github commands in the terminal</p></li>
+<li><p>An overview of some git commands</p></li>
 </ol>
 </section>
 <section id="why-do-we-need-version-control" class="level3">
 <h3 class="anchored" data-anchor-id="why-do-we-need-version-control">1. Why do we need version control?</h3>
 <p>Does this seem familiar?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/file_naming_hell.jpg" class="img-fluid figure-img" alt="Cartoon showing directory with poorly named and organized files."></p>
+<figcaption>Do your files look like this?</figcaption>
+</figure>
+</div>
+<p>Here’s (one of) my embarrassing real example:</p>
+<p><img src="images/file_pane_mess.png" class="img-fluid"></p>
+<p>You can see from the above picture that we were using git (note the .git and .gitignore files), but I didn’t really have a good grasp of version control at that time in my life.</p>
 </section>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section"><img src="images/file_naming_hell.jpg" class="img-fluid" width="391"></h3>
 </section>
+<section id="we-can-do-better-by-using-version-control" class="level2">
+<h2 class="anchored" data-anchor-id="we-can-do-better-by-using-version-control">We can do better by using version control!</h2>
 <section id="what-is-git-what-is-github-how-are-they-related" class="level3">
 <h3 class="anchored" data-anchor-id="what-is-git-what-is-github-how-are-they-related">2. What is git? What is github? How are they related?</h3>
 <section id="what-is-git" class="level4">
@@ -94,43 +103,48 @@ ul.task-list li input[type="checkbox"] {
 <section id="how-are-git-and-github-related" class="level4">
 <h4 class="anchored" data-anchor-id="how-are-git-and-github-related">How are git and github related?</h4>
 <p>Git tracks changes on your local computer, whereas github stores all of those changes to your files remotely.</p>
-<p><img src="images/git_v_github.png" class="img-fluid" width="1000"></p>
-<p>You move your files and your changes between your local repository and your remote repository (hosted on github) via <code>push</code> and <code>pull</code> commands.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/git_v_github.png" class="img-fluid figure-img"></p>
+<figcaption>Comparison between git and github</figcaption>
+</figure>
+</div>
+<p><br>
+You move your files and your changes between your local repository and your remote repository (hosted on github) via <code>push</code> and <code>pull</code> commands.</p>
 </section>
 </section>
 <section id="gitting-started-with-github" class="level3">
 <h3 class="anchored" data-anchor-id="gitting-started-with-github">3. Gitting started with github</h3>
 <p>Before you can use git and github with your RStudio workflow, you will need to make sure that:</p>
 <ol type="1">
-<li>git is installed on your computer</li>
+<li>git is installed on your computer (git for windows is a good choice for pc users)</li>
 <li>You have created an account on github</li>
 <li>You have checked that your RStudio can talk to your github account.</li>
 </ol>
-<p>I *strongly recommend* checking out this website: <a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a> which will walk you through most of the required steps and which encourages use of the <code>usethis</code> package which also installs a number of other helper packages.</p>
+<p>I <strong>strongly recommend</strong> checking out this website: <a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a> which will walk you through most of the required steps and which encourages use of the <code>usethis</code> package which also installs a number of other helper packages.</p>
 </section>
-<section id="recommended-workflow-for-creating-a-new-project" class="level3">
-<h3 class="anchored" data-anchor-id="recommended-workflow-for-creating-a-new-project">4. Recommended workflow for creating a new project</h3>
+<section id="recommended-workflow-start-on-github---then-create-rstudio-project" class="level3">
+<h3 class="anchored" data-anchor-id="recommended-workflow-start-on-github---then-create-rstudio-project">4. Recommended workflow: start on github -&gt; then create rstudio project</h3>
 <p>If you want to use git &amp; github for version control and tie them to your RStudio project, things generally work most smoothly if you work in this order.</p>
+<p>Regardless of whether you are creating a new project or cloning someone else’s project from github, the process is largely the same.</p>
 <ol type="1">
-<li>Create a new repository on github and when asked, go ahead an initialize the repository with a README file.</li>
-<li>Copy a clone of the repository from github</li>
-<li>Create a new RStudio project, but choose “from version control” when setting up the project.</li>
+<li>Make sure there is a repository on github. If it is someone else’s, this step is easy. If you are creating a brand new RStudio project, then create a new repository on github and, when asked, go ahead an initialize the repository with a README file.</li>
+<li>Copy a clone of the repository (yours or someone else’s) from github</li>
+<li>Create a new RStudio project, but choose “from version control” when setting up the project. You will be asked for a url, and this is where you paste the url you copied from github.</li>
 </ol>
-</section>
-<section id="recommended-workflow-for-cloning-someone-elses-project" class="level3">
-<h3 class="anchored" data-anchor-id="recommended-workflow-for-cloning-someone-elses-project">5. Recommended workflow for cloning someone else’s project</h3>
 </section>
 <section id="lets-try-it---using-git-and-github-commands-in-the-terminal" class="level3">
 <h3 class="anchored" data-anchor-id="lets-try-it---using-git-and-github-commands-in-the-terminal">5. Let’s try it - using git and github commands in the terminal</h3>
 <section id="using-the-terminal-and-basic-bash-commands" class="level4">
 <h4 class="anchored" data-anchor-id="using-the-terminal-and-basic-bash-commands">Using the terminal and basic bash commands</h4>
-<p>You use git from the terminal on your computer. You can access the terminal right in RStudio, but you don’t have to.</p>
+<p>You use git from the terminal on your computer. You can access the terminal right in RStudio, but you don’t have to. Some people find the terminal intimidating at first; you may wish to use a git desktop client that works as a graphical user interface as you get started. Here is a link to the git desktop client that comes free from github.</p>
+<p>Below I provide a guide to some terminal and git commands. You can get more details from this <a href="./docs/git-cheat-sheet-education.pdf" title="git and github cheat sheet">cheat sheet</a></p>
 <p>Here’s an overview of some basic terminal (bash) commands:</p>
 <table class="caption-top table">
 <caption>Some common terminal commands</caption>
 <colgroup>
-<col style="width: 26%">
-<col style="width: 73%">
+<col style="width: 47%">
+<col style="width: 52%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -181,8 +195,6 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p><br>
-</p>
 </section>
 <section id="some-basic-git-commands" class="level4">
 <h4 class="anchored" data-anchor-id="some-basic-git-commands">Some basic git commands</h4>
@@ -214,19 +226,17 @@ ul.task-list li input[type="checkbox"] {
 <td>Enables some colorization of your git output</td>
 </tr>
 <tr class="even">
-<td><code>git config credential.helper store</code></td>
+<td><code>git config credential.helper manager</code></td>
 <td>For PC users, bypasses need to authenticate every time you pull/push/fetch etc.</td>
 </tr>
 </tbody>
 </table>
-<p><br>
-</p>
 <p>You will use other git commands for your day-to-day work. Here are some.</p>
 <table class="caption-top table">
 <caption>Some day-to-day git commands</caption>
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 36%">
+<col style="width: 63%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -309,10 +319,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p><br>
-</p>
-<p>Is your computer running git, and, if so, what version?</p>
-<pre class="{bash}"><code>git version</code></pre>
+<p>Now that you know a bit about git and github, let’s give it a try!</p>
 </section>
 </section>
 </section>
