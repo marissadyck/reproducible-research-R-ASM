@@ -136,4 +136,6 @@ You will use other git commands for your day-to-day work. Here are some.
 
 : Some day-to-day git commands
 
-Now that you know a bit about git and github, let's give it a try!
+Now that you know a little bit about git and git hub, let's try it!
+
+You are going to clone an existing github repository that includes some data. We will add some code to tweak the data a bit, and then you will go through the steps of staging and comitting your changes and then pushing them to github.
