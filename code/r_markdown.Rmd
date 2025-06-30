@@ -3,9 +3,9 @@ title: "Reproducible Research in R Workshop"
 author: "Marissa Dyck"
 date: "2025-05-16"
 output:
-  word_document: default
-  pdf_document: default
   html_document: default
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -77,6 +77,7 @@ library(lme4) # for fitting glms
 library(car) # companion package for glm analysis with additional functions
 library(MuMIn) # for model selection
 library(broom) # extracting odds ratios in a tidy format
+library(here) # fixes file path nightmares
 ```
 
 
@@ -111,7 +112,7 @@ In the same code chunk we will also do a bit of data tidying that I consider the
 ```{r import data}
 
 # read in the bear data and do some data tidying
-bear_damage <- read_csv('data/raw/pagube_2008_2016_spatial.csv',
+bear_damage <- read_csv(here('data/raw/pagube_2008_2016_spatial.csv'),
                         
                         # specify how the columns are read in
                         col_types = cols(Damage = col_factor(),

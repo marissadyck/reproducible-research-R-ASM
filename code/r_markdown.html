@@ -428,7 +428,8 @@ library(PerformanceAnalytics) # for generating correlation matrix plots
 library(lme4) # for fitting glms
 library(car) # companion package for glm analysis with additional functions
 library(MuMIn) # for model selection
-library(broom) # extracting odds ratios in a tidy format</code></pre>
+library(broom) # extracting odds ratios in a tidy format
+library(here) # fixes file path nightmares</code></pre>
 </div>
 </div>
 <div id="data" class="section level1">
@@ -484,7 +485,7 @@ things read in properly, and make any changes to this code if
 necessary</p></li>
 </ul>
 <pre class="r"><code># read in the bear data and do some data tidying
-bear_damage &lt;- read_csv(&#39;data/raw/pagube_2008_2016_spatial.csv&#39;,
+bear_damage &lt;- read_csv(here(&#39;data/raw/pagube_2008_2016_spatial.csv&#39;),
                         
                         # specify how the columns are read in
                         col_types = cols(Damage = col_factor(),
